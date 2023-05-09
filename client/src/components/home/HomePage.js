@@ -39,9 +39,9 @@ function HomePage() {
         <br />
       </div>
       <div className="home-page">
-        <p className="company-page-title">Hospital Jobs</p>
+        <p className="company-page-title">Studelp</p>
         <p className="home-page-title">
-          Welcome to <span class="custom-color">Hospital Jobs</span> Site
+          Welcome to <span class="custom-color">Studelp</span> Site
         </p>
         <p className="home-page-title">
           Find the perfect job in the medical field,
