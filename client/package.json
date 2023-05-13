@@ -39,6 +39,7 @@
     "start": "set HTTPS=true&&react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
+    "sel": "./node_modules/.bin/cucumber-js --config cucumber-config.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -58,5 +59,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^9.1.2",
+    "@cucumber/pretty-formatter": "^1.0.0",
+    "selenium-webdriver": "^4.9.2"
   }
 }
