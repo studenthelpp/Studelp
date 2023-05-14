@@ -1,14 +1,27 @@
 import React, { useState } from "react";
 import ContactModal from "../contact/ContactModal";
+import axios from "axios";
+import { ipAddress } from "../../address";
 
 function UserModal({ filteredUsers, openDeleteConfirmationModal }) {
   const [contact, setContact] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const openContactModal = (event, jobContact) => {
+  const openContactModal = (event, jobContact, userId) => {
     event.preventDefault();
     setContact(jobContact);
     setIsOpen(true);
+    axios
+      .post(ipAddress + "/api/updateclick", {
+        id: userId,
+      })
+      .then((response) => {
+        if (response.data.message) {
+          console.log("Update click analysis");
+        } else {
+          return null;
+        }
+      });
   };
 
   const closeModal = () => {
@@ -48,7 +61,8 @@ function UserModal({ filteredUsers, openDeleteConfirmationModal }) {
                         onClick={(e) =>
                           openContactModal(
                             e,
-                            validateCont(user.u_email, user.u_phone)
+                            validateCont(user.u_email, user.u_phone),
+                            user.u_id
                           )
                         }
                       >
@@ -60,7 +74,7 @@ function UserModal({ filteredUsers, openDeleteConfirmationModal }) {
                         className="deleteJob"
                         data-testid="delete-job"
                         onClick={(e) =>
-                          openDeleteConfirmationModal(e, user.j_id)
+                          openDeleteConfirmationModal(e, user.u_id)
                         }
                       >
                         <i className="fa-solid fa-trash"></i>{" "}
