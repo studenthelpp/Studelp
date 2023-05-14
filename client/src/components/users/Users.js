@@ -2,49 +2,49 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
 import { ipAddress } from "../../address";
-import JobModal from "./jobModal";
+import UserModal from "./userModal";
 
-function Jobs() {
-  const [jobs, setJobs] = useState([]);
+function Users() {
+  const [users, setUsers] = useState([]);
   const [filterTitle, setFilterTitle] = useState([]);
   const [filterLocation, setFilterLocation] = useState([]);
-  const [filterJobType, setFilterJobType] = useState([]);
+  const [filterUserName, setFilterUserName] = useState([]);
 
-  const [filteredJobs, setFilteredJobs] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
   const [spinner, setSpinner] = useState(true);
 
   useEffect(() => {
     axios
-      .get(ipAddress + "/api/getjobs", {
+      .get(ipAddress + "/api/getusers", {
         responseType: "json",
       })
       .then((response) => {
-        setJobs(response.data);
-        setFilteredJobs(response.data);
+        setUsers(response.data);
+        setFilteredUsers(response.data);
         setSpinner(false);
       })
       .catch((error) => {
-        console.log("No Job found");
+        console.log("No profiles found");
       });
   }, []);
 
   // function to filter jobs
-  function filterJobs(e) {
+  function filterUsers(e) {
     e.preventDefault();
 
-    const filteredJobs = jobs.filter(
-      (job) =>
-        (job.j_title.toLowerCase().includes(filterTitle) ||
+    const filteredUsers = users.filter(
+      (user) =>
+        (user.u_title.toLowerCase().includes(filterTitle) ||
           filterTitle.length === 0) &&
-        (job.j_location.toLowerCase().includes(filterLocation) ||
+        (user.u_location.toLowerCase().includes(filterLocation) ||
           filterLocation.length === 0) &&
-        (job.j_type === filterJobType ||
-          filterJobType.length === 0 ||
-          filterJobType === "All")
+        (user.u_firstname === filterUserName ||
+          user.u_lastname === filterUserName ||
+          filterUserName.length === 0)
     );
 
-    setFilteredJobs(filteredJobs);
+    setFilteredUsers(filteredUsers);
   }
 
   return (
@@ -58,7 +58,7 @@ function Jobs() {
       {<NavBar />}
 
       <div className="filter-jobs">
-        <form type="filter-job" onSubmit={filterJobs}>
+        <form type="filter-job" onSubmit={filterUsers}>
           <label className="filter">
             <span className="icon">
               <i className="fa-solid fa-user-doctor"></i>
@@ -90,19 +90,18 @@ function Jobs() {
           <br />
 
           <label>
-            <select
+            <span className="icon">
+              <i className="fa-solid fa-user-doctor"></i>
+            </span>
+            <input
+              type="text"
               id="job-type"
-              name="job-type"
-              placeholder="Job type"
+              name="user-name"
+              placeholder="Name"
               onChange={(event) => {
-                setFilterJobType(event.target.value);
+                setFilterUserName(event.target.value.toLowerCase());
               }}
-            >
-              <option value="All">All</option>
-              <option value="Full-time">Full-time</option>
-              <option value="Part-time">Part-time</option>
-              <option value="Locum">Locum</option>
-            </select>
+            />
           </label>
 
           <button type="submit" value="Filter" id="filter-submit">
@@ -119,10 +118,10 @@ function Jobs() {
           </span>
         </ul>
       ) : (
-        <JobModal filteredJobs={filteredJobs} />
+        <UserModal filteredUsers={filteredUsers} />
       )}
     </div>
   );
 }
 
-export default Jobs;
+export default Users;

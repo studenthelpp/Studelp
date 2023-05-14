@@ -2,22 +2,22 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
 import { ipAddress } from "../../address";
-import JobModal from "../jobs/jobModal";
+import UserModal from "../users/userModal";
 
 function Profile() {
-  const [jobs, setJobs] = useState([]);
+  const [users, setUsers] = useState([]);
   const [spinner, setSpinner] = useState(true);
 
   useEffect(() => {
     axios
-      .get(ipAddress + "/api/getrecentjobs", {
+      .get(ipAddress + "/api/getrecentusers", {
         responseType: "json",
       })
       .then((response) => {
-        setJobs(response.data);
+        setUsers(response.data);
       })
       .catch((error) => {
-        console.log("No jobs found");
+        console.log("No profile found");
       });
     setSpinner(false);
   }, []);
@@ -40,7 +40,7 @@ function Profile() {
           </span>
         </ul>
       ) : (
-        <JobModal filteredJobs={jobs} />
+        <UserModal filteredUsers={users} />
       )}
     </div>
   );

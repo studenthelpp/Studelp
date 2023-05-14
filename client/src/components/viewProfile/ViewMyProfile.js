@@ -3,9 +3,9 @@ import axios from "axios";
 import NavBar from "../navigationBar/NavBar";
 import { ipAddress } from "../../address";
 import DeleteConfirmationModal from "../contact/DeleteConfirmationModal";
-import JobModal from "../jobs/jobModal";
+import UserModal from "../users/userModal";
 
-function ViewMyJobs() {
+function ViewMyProfile() {
   const [jobs, setJobs] = useState("");
   const [spinner, setSpinner] = useState(true);
 
@@ -72,8 +72,8 @@ function ViewMyJobs() {
           </span>
         </ul>
       ) : (
-        <JobModal
-          filteredJobs={jobs}
+        <UserModal
+          filteredUsers={jobs}
           openDeleteConfirmationModal={openDeleteConfirmationModal}
         />
       )}
@@ -100,4 +100,4 @@ function ViewMyJobs() {
   );
 }
 
-export default ViewMyJobs;
+export default ViewMyProfile;

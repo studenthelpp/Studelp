@@ -1,6 +1,6 @@
 {
-  "name": "doctorjobs",
-  "version": "0.1.0",
+  "name": "studelp",
+  "version": "0.1.1",
   "private": true,
   "compilerOptions": {
     "target": "es6",

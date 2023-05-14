@@ -2,22 +2,22 @@ import BackgroundParticles from "../BackgroundParticles/Particles";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ipAddress } from "../../address";
-import JobModal from "../jobs/jobModal";
+import UserModal from "../users/userModal";
 
 function HomePage() {
-  const [jobs, setJobs] = useState([]);
+  const [users, setUsers] = useState([]);
   const [spinner, setSpinner] = useState(true);
 
   useEffect(() => {
     axios
-      .get(ipAddress + "/api/getrecentjobs", {
+      .get(ipAddress + "/api/getrecentusers", {
         responseType: "json",
       })
       .then((response) => {
-        setJobs(response.data);
+        setUsers(response.data);
       })
       .catch((error) => {
-        console.log("No jobs found");
+        console.log("No profile found");
       });
     setSpinner(false);
   }, []);
@@ -25,7 +25,7 @@ function HomePage() {
   return (
     <div className="login">
       <div className="login-app">
-        <BackgroundParticles />
+        {/* <BackgroundParticles /> */}
 
         <link rel="stylesheet" href="HomePage.css"></link>
 
@@ -43,11 +43,11 @@ function HomePage() {
         <p className="home-page-title">
           Welcome to <span class="custom-color">Studelp</span> Site
         </p>
-        <p className="home-page-title">
-          Find the perfect job in the medical field,
-        </p>
+        <p className="home-page-title">Find the perfect person in any field,</p>
 
-        <p className="home-page-title">with our comprehensive job listings.</p>
+        <p className="home-page-title">
+          with our comprehensive profile listings.
+        </p>
         <br />
         <div className="recent-jobs-home">
           <br />
@@ -58,7 +58,7 @@ function HomePage() {
               </span>
             </ul>
           ) : (
-            <JobModal filteredJobs={jobs} />
+            <UserModal filteredUsers={users} />
           )}
         </div>
         <footer id="footer">

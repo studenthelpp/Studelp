@@ -15,18 +15,17 @@ import "./components/Toast/Toast.css";
 import "./components/home/HomePage.css";
 import "./components/settin/Settings.css";
 
-import "./components/registerJobs/RegisterJob.css";
+import "./components/viewProfile/RegisterJob.css";
 import Profile from "./components/profile/Profile";
 import LoginForm from "./components/login/LoginForm";
 import { Navigate, Routes, Route, useNavigate } from "react-router-dom";
 import SignUp from "./components/signup/SignUp";
 import ReactSwitch from "react-switch";
 import ForgotPassword from "./components/forgotPassword/ForgotPassword";
-import Jobs from "./components/jobs/Jobs";
-import ViewMyJobs from "./components/registerJobs/ViewMyJobs";
+import Jobs from "./components/users/Users";
+import ViewMyProfile from "./components/viewProfile/ViewMyProfile";
 import Settings from "./components/settin/Settings";
 import UpdatePassword from "./components/forgotPassword/UpdatePassword";
-import RegisterJob from "./components/registerJobs/RegisterJob";
 import Home from "./components/home/HomePage";
 
 export const ThemeContext = createContext(null);
@@ -50,13 +49,7 @@ function App() {
 
   useEffect(() => {
     if (!loggedIn) {
-      const blockedUrls = [
-        "/profile",
-        "/jobs",
-        "/registerjob",
-        "/viewmyjobs",
-        "/settings",
-      ];
+      const blockedUrls = ["/profile", "/jobs", "/viewmyprofile", "/settings"];
       const currentUrl = window.location.pathname;
       if (blockedUrls.includes(currentUrl)) {
         navigate("/login");
@@ -75,9 +68,8 @@ function App() {
         <Routes>
           <Route exact path="/login" element={<LoginForm />} />
           <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/registerjob" element={<RegisterJob />} />
 
-          <Route exact path="/viewmyjobs" element={<ViewMyJobs />} />
+          <Route exact path="/viewmyprofile" element={<ViewMyProfile />} />
 
           <Route exact path="/jobs" element={<Jobs />} />
 

@@ -10,12 +10,10 @@ function NavBar() {
       setActiveLink(0);
     } else if (currentPathname === "/jobs") {
       setActiveLink(1);
-    } else if (currentPathname === "/registerjob") {
+    } else if (currentPathname === "/viewmyprofile") {
       setActiveLink(2);
-    } else if (currentPathname === "/viewmyjobs") {
-      setActiveLink(3);
     } else if (currentPathname === "/settings") {
-      setActiveLink(4);
+      setActiveLink(3);
     }
   }, [setActiveLink]);
 
@@ -41,28 +39,19 @@ function NavBar() {
                 <i className="fa-solid fa-suitcase"></i>
               </span>
               <br />
-              All Jobs
+              All Users
             </a>
           </li>
           <li className={activeLink === 2 ? "active" : ""}>
-            <a href="/registerjob">
-              <span className="nav-icon">
-                <i className="fa-solid fa-network-wired"></i>{" "}
-              </span>
-              <br />
-              Add Jobs
-            </a>
-          </li>
-          <li className={activeLink === 3 ? "active" : ""}>
-            <a href="/viewmyjobs">
+            <a href="/viewmyprofile">
               <span className="nav-icon">
                 <i className="fa-solid fa-book-journal-whills"></i>
               </span>
               <br />
-              View My Jobs
+              My Profile
             </a>
           </li>
-          <li className={activeLink === 4 ? "active" : ""}>
+          <li className={activeLink === 3 ? "active" : ""}>
             <a href="/settings">
               <span className="nav-icon">
                 <i className="fa-solid fa-gear"></i>

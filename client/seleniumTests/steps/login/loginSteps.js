@@ -40,8 +40,7 @@ Then("I should see the navigation bar", async () => {
   const nav_bar = await driver.findElement(By.id("navigation_bar")).getText();
   expect(nav_bar)
     .to.contain("Home")
-    .and.to.contain("All Jobs")
-    .and.to.contain("Add Jobs")
-    .and.to.contain("View My Jobs")
+    .and.to.contain("All Users")
+    .and.to.contain("My Profile")
     .and.to.contain("Settings");
 });
