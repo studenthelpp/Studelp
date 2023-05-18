@@ -37,7 +37,7 @@
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true,
-    "step_definitions": "./cypress/e2e/integration/step_definition/login/login.js"
+    "step_definitions": "./cypress/e2e/integration/step_definition/"
   },
   "scripts": {
     "start": "react-scripts start",
