@@ -35,6 +35,11 @@
     "zxcvbn": "^4.4.2",
     "zxcvbn-ts": "github:zxcvbn-ts/zxcvbn"
   },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "step_definitions": "./cypress/e2e/integration/step_definition/login/login.js",
+    "stepDefinitions": "cypress/e2e/integration/step_definition/login/login.js"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -63,6 +68,8 @@
   "devDependencies": {
     "@cucumber/cucumber": "^9.1.2",
     "@cucumber/pretty-formatter": "^1.0.0",
+    "cypress": "^12.12.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
     "selenium-webdriver": "^4.9.2"
   }
 }
